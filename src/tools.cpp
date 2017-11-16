@@ -17,12 +17,12 @@ VectorXd Tools::CalculateRMSE(const vector<VectorXd> &estimations,
   
   // Check for division by zero
   if(estimations.size() == 0){
-    cout << "Error: no estimations provided!" << endl;
+    cout << "Error: No estimations" << endl;
     return rmse;
   }
   // Check for equal vector sizes
   if(estimations.size() != ground_truth.size()){
-    cout << "Error: Different sizes for estimations/ground_truth vectors!" << endl;
+    cout << "Error: Different sizes for estimations/ground truth matrix" << endl;
     return rmse;
   }
   
@@ -30,7 +30,7 @@ VectorXd Tools::CalculateRMSE(const vector<VectorXd> &estimations,
   for(int i=0; i < estimations.size(); ++i){
     VectorXd diff = VectorXd::Zero(estimations.size());
     diff = estimations[i] - ground_truth[i];
-    VectorXd residuals = diff.array()*diff.array();
+    VectorXd residuals = diff.array() * diff.array();
     rmse += residuals;
   }
   
@@ -61,7 +61,7 @@ MatrixXd Tools::CalculateJacobian(const VectorXd& x_state) {
   double vxpy = vx*py - vy*px;
   double vypx = vy*px - vx*py;
   
-  if(fabs(pxpy < 0.0001)){
+  if(abs(pxpy < 0.0001)){
     cout << "Division by zero" << endl;
     return Hj;
   }

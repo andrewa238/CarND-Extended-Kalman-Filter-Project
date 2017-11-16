@@ -58,6 +58,7 @@ void KalmanFilter::UpdateEKF(const VectorXd &z) {
   z_pred << rho, phi, rhodot;
     
   VectorXd y = z - z_pred;
+  // make sure the prediction phi is in range -PI ~ PI
   y[1] = atan2(sin(y[1]),cos(y[1]));
     
   MatrixXd Ht = H_.transpose();
