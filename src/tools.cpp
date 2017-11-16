@@ -57,7 +57,7 @@ MatrixXd Tools::CalculateJacobian(const VectorXd& x_state) {
   // Some values that get used more than once
   double pxpy = px*px+py*py;
   double pxpy2 = pow(pxpy,0.5);
-  double pxpy32 = pow(pxpy,1.5);
+  double pxpy32 = pow(pxpy2,3);
   double vxpy = vx*py - vy*px;
   double vypx = vy*px - vx*py;
   
